@@ -11,7 +11,7 @@ class SVY21:
 
     # SVY21 Projection
     # Fundamental point: Base 7 at Pierce Resevoir.
-    # Latitude: 1°22'02.9154"N, longitude: 103°49'31.9752"E (of Greenwich).
+    # Latitude: 1 22 02.9154 N, longitude: 103 49 31.9752 E (of Greenwich).
     oLat = 1.367476     # origin's lat in degrees
     oLon = 103.825549   # origin's lon in degrees
     oN = 38744.572      # false Northing
