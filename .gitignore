@@ -1,0 +1,4 @@
+*.class
+Java/.settings
+.classpath
+.project
