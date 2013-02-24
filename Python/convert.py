@@ -10,8 +10,10 @@ class SVY21:
     f = 1 / 298.257223563
 
     # SVY21 Projection
-    oLat = 1.366666     # origin's lat in degrees
-    oLon = 103.833333   # origin's lon in degrees
+    # Fundamental point: Base 7 at Pierce Resevoir.
+    # Latitude: 1°22'02.9154"N, longitude: 103°49'31.9752"E (of Greenwich).
+    oLat = 1.367476     # origin's lat in degrees
+    oLon = 103.825549   # origin's lon in degrees
     oN = 38744.572      # false Northing
     oE = 28001.642      # false Easting
     k = 1               # scale factor
@@ -28,6 +30,10 @@ class SVY21:
         self.A6 = 35 * self.e6 / 3072;
 
     def computeSVY21(self, lat, lon):
+        """
+        Returns a pair (N, E) representing Northings and Eastings in SVY21.
+        """
+
         latR = lat * math.pi / 180
         sinLat = math.sin(latR)
         sin2Lat = sinLat * sinLat
@@ -90,6 +96,10 @@ class SVY21:
         return self.a / math.sqrt(poly)
 
     def computeLatLon(self, N, E):
+        """
+        Returns a pair (lat, lon) representing Latitude and Longitude.
+        """
+
         Nprime = N - self.oN
         Mo = self.calcM(self.oLat)
         Mprime = Mo + (Nprime / self.k)
