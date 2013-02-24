@@ -1,9 +1,9 @@
-#SVY21#
-===
+SVY21
+=====
 A **Free** and **Open Source** Library to convert between Lat/Lon, and SVY21.
 
-##Usage##
-###Python###
+#Usage##
+##Python###
 
     # Initialization
     >>> cv = SVY21()
@@ -19,7 +19,7 @@ A **Free** and **Open Source** Library to convert between Lat/Lon, and SVY21.
     >>> (lat, lon)
     (1.2949192688483109, 103.77367436886927)
     
-###Java###
+##Java###
 
     public class Driver {
 	    public static void main(String[] args) {
@@ -38,11 +38,11 @@ A **Free** and **Open Source** Library to convert between Lat/Lon, and SVY21.
        	}
     }
 
-##Equations##
+##Equations#
 This library makes use of the equations in the following page: [http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx](http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx)
 
-##Acknowledgements##
-Issac Low  
+##Acknowledgements#
+Isaac Low  
 Jonathan Ong  
 Chua Wei Kuan  
 
