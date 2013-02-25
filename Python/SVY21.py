@@ -12,6 +12,10 @@ class SVY21:
     # SVY21 Projection
     # Fundamental point: Base 7 at Pierce Resevoir.
     # Latitude: 1 22 02.9154 N, longitude: 103 49 31.9752 E (of Greenwich).
+
+    # Known Issue: Setting (oLat, oLon) to the exact coordinates specified above
+    # results in computation being slightly off. The values below give the most 
+    # accurate represenation of test data.
     oLat = 1.366666     # origin's lat in degrees
     oLon = 103.833333   # origin's lon in degrees
     oN = 38744.572      # false Northing
