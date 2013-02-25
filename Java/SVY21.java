@@ -6,8 +6,8 @@ public class SVY21 {
 	// Datum and Projection
 	final double a		= 6378137;
 	final double f		= 1 / 298.257223563;
-	final double oLat	= 1.367476;				// degrees
-	final double oLon	= 103.825549;			// degrees
+	final double oLat	= 1.366666;				// degrees
+	final double oLon	= 103.833333;			// degrees
 	final double No		= 38744.572;
 	final double Eo		= 28001.642;
 	final double k		= 1;
