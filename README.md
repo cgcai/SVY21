@@ -45,6 +45,13 @@ The "*Protected Areas And Protected Places Act*" found [here](http://statutes.ag
 
 You can try converting some of the Northing, Easting coordinates to Latitude and Longitude, and viewing the plot of land on [Google Maps](https://maps.google.com.sg/) to verify their accuracy.
 
+###Precision###
+Like all floating-point computations, converting back and forth between Lat/Lon and SVY21 will cause the loss of precision. 
+
+In the Python example above, note that the input Lat/Lon and output Lat/Lon are very slightly different. Repeating the process a few more times will compound this difference.
+
+The useful precision of the output also depends on the precision of the inputs.
+
 ##Known Issues##
 1. Setting the origin's latitude and longitude, represented by `oLat` and `oLon` respectively, to the official SVY21 datum specified [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=DocId%3A%22f3625be0-89ba-4db2-85bf-303d62771de8%22%20Status%3Ainforce%20Depth%3A0;rec=0) results in computation being a bit off for the above sample points. However, the rounded values of `(1.366666, 103.833333)` give accurate results.
 
