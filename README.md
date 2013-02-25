@@ -4,6 +4,7 @@ A **Free** and **Open Source** Library to convert between Lat/Lon, and SVY21.
 
 ##Usage##
 ###Python###
+The Python script is a ready-to-use converter. Run with `python -i SVY21.py`.
 
     # Initialization
     >>> cv = SVY21()
@@ -12,14 +13,15 @@ A **Free** and **Open Source** Library to convert between Lat/Lon, and SVY21.
     >>> (lat, lon) = (1.2949192688485278, 103.77367436885834)
     >>> (N, E) = cv.computeSVY21(lat, lon)
     >>> (N, E)
-    (30721.679566556475, 22228.448562409914)
+    (30811.26429645264, 21362.157043860374)
     
     # Computing Lat/Lon from SVY21
     >>> (lat, lon) = cv.computeLatLon(N, E)
     >>> (lat, lon)
-    (1.2949192688483109, 103.77367436886927)
+    (1.2949192688483109, 103.77367436887495)
     
 ###Java###
+The Java class may be embedded in other projects. Feel free to specify your own package details.
 
     public class Driver {
 	    public static void main(String[] args) {
@@ -37,9 +39,23 @@ A **Free** and **Open Source** Library to convert between Lat/Lon, and SVY21.
     		System.out.println(resultLatLon);
        	}
     }
+    
+##Testing##
+The "*Protected Areas And Protected Places Act*" found [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=Id%3A%223ed25f04-0465-4eda-b05f-c0c7334e8840%22%20Status%3Ainforce;rec=0;whole=yes) lists some SVY21 points that correspond to vertices of hard-to-miss plots of land in Singapore.
 
-##Equations##
+You can try converting some of the Northing, Easting coordinates to Latitude and Longitude, and viewing the plot of land on [Google Maps](https://maps.google.com.sg/) to verify their accuracy.
+
+##Known Issues##
+1. Setting the origin's latitude and longitude, represented by `oLat` and `oLon` respectively, to the official SVY21 datum specified [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=DocId%3A%22f3625be0-89ba-4db2-85bf-303d62771de8%22%20Status%3Ainforce%20Depth%3A0;rec=0) results in computation being a bit off for the above sample points. However, the rounded values of `(1.366666, 103.833333)` give accurate results.
+
+##Mathematics##
 This library makes use of the equations in the following page: [http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx](http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx)
+
+##Future Direction##
+1. **Code quality**. This library was developed during a Hackathon, and needs to be brought up to production standard.
+2. A few parties have expressed interest in **JavaScript** support.
+3. Automated and/or more comprehensive **tests**.
+4. **Other languages**. 
 
 ##Acknowledgements##
 Isaac Low  
