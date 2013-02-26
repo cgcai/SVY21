@@ -1,5 +1,14 @@
+import java.util.Map;
+import java.util.TreeMap;
+
 public class SVY21 {
 	// Ref: http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx
+
+	// Map Keys
+	private static final String KEY_EASTING = "easting";
+	private static final String KEY_NORTHING = "northing";
+	private static final String KEY_LONGITUDE = "longitude";
+	private static final String KEY_LATITUDE = "latitude";
 
 	private final static double radRatio = Math.PI / 180;
 
@@ -13,9 +22,9 @@ public class SVY21 {
 	final double k		= 1;
 
 	// Projection Constants
-	double b;
-	double e2, e4, e6;	
-	double A0, A2, A4, A6;
+	final double b;
+	final double e2, e4, e6;	
+	final double A0, A2, A4, A6;
 
 	public SVY21() {
 		b = a * (1 - f);
@@ -30,7 +39,7 @@ public class SVY21 {
 		A6 = 35 * e6 / 3072;
 	}
 
-	public Pair<Double, Double> computeSVY21(double lat, double lon) {
+	public Map<String, Double> computeSVY21(double lat, double lon) {
 		double latR = lat * radRatio;
 		double sinLat = Math.sin(latR);
 		double sin2Lat = sinLat * sinLat;
@@ -77,7 +86,10 @@ public class SVY21 {
 		double eTerm3 = w6 / 5040 * cos6Lat * (61 - 479 * t2 + 179 * t4 - t6);
 		double E = Eo + k * v * w * cosLat * (1 + eTerm1 + eTerm2 + eTerm3);
 
-		return new Pair<Double, Double>(N, E);
+		Map<String, Double> result = new TreeMap<String, Double>();
+		result.put(northingKey(), N);
+		result.put(eastingKey(), E);
+		return result;
 	}
 
 	private double calcM(double lat) {
@@ -99,7 +111,7 @@ public class SVY21 {
 		return v;
 	}
 
-	public Pair<Double, Double> computeLatLon(double N, double E) {
+	public Map<String, Double> computeLatLon(double N, double E) {
 		double Nprime = N - No;
 		double Mo = calcM(oLat);
 		double Mprime = Mo + (Nprime / k);
@@ -152,6 +164,25 @@ public class SVY21 {
 		double lonTerm4 = ((x7 * secLatPrime) / 5040) * (61 + 662 * tPrime2 + 1320 * tPrime4 + 720 * tPrime6);
 		double lon = (oLon * radRatio) + lonTerm1 - lonTerm2 + lonTerm3 - lonTerm4;
 
-		return new Pair<Double, Double>(lat / radRatio, lon / radRatio);
+		Map<String, Double> result = new TreeMap<String, Double>();
+		result.put(latitudeKey(), lat / radRatio);
+		result.put(longitudeKey(), lon / radRatio);
+		return result;
+	}
+	
+	public String latitudeKey() {
+		return KEY_LATITUDE;
+	}
+	
+	public String longitudeKey() {
+		return KEY_LONGITUDE;
+	}
+	
+	public String northingKey() {
+		return KEY_NORTHING;
+	}
+	
+	public String eastingKey() {
+		return KEY_EASTING;
 	}
 }

@@ -1,16 +1,18 @@
+import java.util.Map;
+
 public class Driver {
 	public static void main(String[] args) {
 		// Initialization
-		SVY21 cv = new SVY21();
+		SVY21 svy = new SVY21();
 		
 		// Computing SVY21 from Lat/Lon
 		double lat = 1.2949192688485278;
 		double lon = 103.77367436885834;
-		Pair<Double, Double> resultNE = cv.computeSVY21(lat, lon);
+		Map<String, Double> resultNE = svy.computeSVY21(lat, lon);
 		System.out.println(resultNE);
 		
 		// Computing Lat/Lon from SVY21
-		Pair<Double, Double> resultLatLon = cv.computeLatLon(resultNE.getFirst(), resultNE.getSecond());
+		Map<String, Double> resultLatLon = svy.computeLatLon(resultNE.get(svy.northingKey()), resultNE.get(svy.eastingKey()));
 		System.out.println(resultLatLon);
 	}
 }
