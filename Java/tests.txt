@@ -1,0 +1,27 @@
+# Testing
+# Pipe this file into TestDriver
+#
+#     cat tests.txt | java TestDriver
+#
+# Test Format
+# 1) Lines that begin with '#' are ignored.
+# 2) Blank lines are ignored.
+# 3) Each test case must be on a single line. No line-end comments are allowed.
+# 4) A test case consists of a comma-seperated line with 5 values:
+#        - Direction (0 for Lat/Lon to SVY21, 1 for SVY21 to Lat/Lon)
+#        - Input #1
+#        - Input #2
+#        - Expected #1
+#        - Expected #2
+#
+# Example:
+1, 39105.269, 30629.967, 1.3699278977737488, 103.85695034976466
+
+# Backward conversion with the above example:
+0, 1.3699278977737488, 103.85695034976466, 39105.269, 30629.967
+
+# Error Handling
+# 1) Only lines that contain exactly 5 tokens are considered test cases. 
+#    All other lines are ignored, even if they are not empty, or do not start with '#'.
+# 2) In a test case, tokens are assumed to be in the correct format. Incorrect formats
+#    are not handled by this TestDriver.
