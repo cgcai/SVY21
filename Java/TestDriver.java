@@ -63,7 +63,7 @@ public class TestDriver {
 			if (fequals(result1, expected1) && fequals(result2, expected2)) {
 				System.out.format("Line %d: pass\n", line);
 			} else {
-				System.out.format("Line %d: FAIL\n", line);
+				System.out.format("Line %d: FAIL. Expected: (%f, %f) Got: (%f, %f)\n", line, expected1, expected2, result1, result2);
 			}
 		}
 		
@@ -77,6 +77,7 @@ public class TestDriver {
 	private static boolean fequals(double a, double b) {
 		int num1 = (int)(a * FCMP_PRECISION);
 		int num2 = (int)(b * FCMP_PRECISION);
-		return (num1 == num2);
+		int diff = num1 - num2;
+		return (diff >= -1 && diff <= 1);
 	}
 }

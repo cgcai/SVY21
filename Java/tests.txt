@@ -8,11 +8,11 @@
 # 2) Blank lines are ignored.
 # 3) Each test case must be on a single line. No line-end comments are allowed.
 # 4) A test case consists of a comma-seperated line with 5 values:
-#        - Direction (0 for Lat/Lon to SVY21, 1 for SVY21 to Lat/Lon)
-#        - Input #1
-#        - Input #2
-#        - Expected #1
-#        - Expected #2
+#        - Direction    (0 for Lat/Lon to SVY21, 1 for SVY21 to Lat/Lon)
+#        - Input #1     (Northing/Latitude)
+#        - Input #2     (Easting/Longitude)
+#        - Expected #1  (Latitude/Northing)
+#        - Expected #2  (Longitude/Easting)
 #
 # Example:
 1, 39105.269, 30629.967, 1.3699278977737488, 103.85695034976466
@@ -25,3 +25,27 @@
 #    All other lines are ignored, even if they are not empty, or do not start with '#'.
 # 2) In a test case, tokens are assumed to be in the correct format. Incorrect formats
 #    are not handled by this TestDriver.
+
+# SVY21 Reference Point
+1, 38744.572, 28001.642, 1.366666, 103.833333
+0, 1.366666, 103.833333, 38744.572, 28001.642
+
+# The following cases test the accuracy of SVY21->Lat/Lon conversion.
+# Each SVY21 coordinate is a corner of a protected place gazetted in:
+# http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=Id%3A%223ed25f04-0465-4eda-b05f-c0c7334e8840%22%20Status%3Ainforce;rec=0;whole=yes
+# Its corresponding Lat/Lon coordinate is computed once, and if its location when viewed on
+# Google Maps matches the shape of the gazetted plot of land, it is considered to be
+# 'correct'.
+
+# Corner of Ang Mo Kio 66kV Substation
+1, 39105.269, 30629.967, 1.3699278977737488, 103.85695034976466
+0, 1.3699278977737488, 103.85695034976466, 39105.269, 30629.967
+
+# Corner of Jurong Lake Canal 400kV Cable Bridge.
+1, 36307.704, 16272.970, 1.3446255443241177, 103.72794378041792
+0, 1.3446255443241177, 103.72794378041792, 36307.704, 16272.970
+
+# Corner of Sembawang 66kV Substation.
+1, 48187.789, 27720.130, 1.4520670518379692, 103.83080332777138
+0, 1.4520670518379692, 103.83080332777138, 48187.789, 27720.130
+

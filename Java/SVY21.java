@@ -77,23 +77,21 @@ public class SVY21 {
 	public static String svy21CoordinateKey() {
 		return KEY_SVY21;
 	}
+	
 	// Datum and Projection
-	final double a		= 6378137;
-	final double f		= 1 / 298.257223563;
-	final double oLat	= 1.366666;				// degrees
+	private final double a		= 6378137;
+	private final double f		= 1 / 298.257223563;
+	private final double oLat	= 1.366666;				// degrees
+	private final double oLon	= 103.833333;			// degrees
+	private final double No		= 38744.572;	
+	private final double Eo		= 28001.642;
 
-	final double oLon	= 103.833333;			// degrees
-	final double No		= 38744.572;	
-	final double Eo		= 28001.642;
-
-	final double k		= 1;
+	private final double k		= 1;
 
 	// Projection Constants
-	final double b;
-
-	final double e2, e4, e6;
-
-	final double A0, A2, A4, A6;
+	private final double b;
+	private final double e2, e4, e6;
+	private final double A0, A2, A4, A6;
 
 	/**
 	 * Class constructor.
