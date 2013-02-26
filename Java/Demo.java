@@ -1,6 +1,6 @@
 import java.util.Map;
 
-public class Driver {
+public class Demo {
 	public static void main(String[] args) {
 		// Initialization
 		SVY21 svy = new SVY21();
