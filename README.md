@@ -23,39 +23,34 @@ The Python script is a ready-to-use converter. Run with `python -i SVY21.py`.
 ###Java###
 The Java class may be embedded in other projects. Feel free to specify your own package details.
 
-    public class Driver {
-	    public static void main(String[] args) {
-    		// Initialization
-	    	SVY21 cv = new SVY21();
+	// Initialization
+	SVY21 svy = new SVY21();
+	
+	// Computing SVY21 from Lat/Lon
+	double lat = 1.2949192688485278;
+	double lon = 103.77367436885834;
+	Map<String, Double> resultNE = svy.computeSVY21(lat, lon);
+	System.out.println(resultNE);
 		
-    		// Computing SVY21 from Lat/Lon
-    		double lat = 1.2949192688485278;
-    		double lon = 103.77367436885834;
-    		Pair<Double, Double> resultNE = cv.computeSVY21(lat, lon);
-    		System.out.println(resultNE);
-		
-    		// Computing Lat/Lon from SVY21
-    		Pair<Double, Double> resultLatLon = cv.computeLatLon(resultNE.getFirst(), resultNE.getSecond());
-    		System.out.println(resultLatLon);
-       	}
-    }
+	// Computing Lat/Lon from SVY21
+	Map<String, Double> resultLatLon = svy.computeLatLon(resultNE.get(SVY21.northingKey()), resultNE.get(SVY21.eastingKey()));
+	System.out.println(resultLatLon);
 		
 ###Javascript###
 
-		// Initialization
-		var cv = new SVY21();
+    // Initialization
+	var cv = new SVY21();
 
-		// Computing SVY21 from Lat/Lon
-		var lat = 1.2949192688485278;
-		var lon = 103.77367436885834;
-		var result = cv.computeSVY21(lat, lon);
-		console.log(result)
+	// Computing SVY21 from Lat/Lon
+	var lat = 1.2949192688485278;
+	var lon = 103.77367436885834;
+	var result = cv.computeSVY21(lat, lon);
+	console.log(result)
 
-		// Computing Lat/Lon from SVY21
-		var resultLatLon = cv.computeLatLon(result.N, result.E);
-		console.log(resultLatLon);
+	// Computing Lat/Lon from SVY21
+	var resultLatLon = cv.computeLatLon(result.N, result.E);
+	console.log(resultLatLon);
 
-    
 ##Testing##
 The "Protected Areas And Protected Places Act" found [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=Id%3A%223ed25f04-0465-4eda-b05f-c0c7334e8840%22%20Status%3Ainforce;rec=0;whole=yes) lists some SVY21 points that correspond to vertices of hard-to-miss plots of land in Singapore.
 
