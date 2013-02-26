@@ -114,44 +114,6 @@ public class SVY21 {
 	 * Latitude can be accessed by the key returned by the static method latitudeKey().
 	 * Longitude can be accessed by the key returned by the static method longitudeKey().
 	 * 
-	 * This method is a short-hand for the functionally-identical
-	 * public Map<String, Double> computeLatLon(double N, double E)
-	 * 
-	 * @param svy21Coordinate
-	 * @return
-	 */
-	public Map<String, Double> computeLatLon(Map<String, Double> svy21Coordinate) {
-		double northing = svy21Coordinate.get(northingKey());
-		double easting = svy21Coordinate.get(eastingKey());
-		return computeLatLon(northing, easting);
-	}
-	
-	/**
-	 * Computes SVY21 Northing and Easting based on a Latitude and Longitude coordinate.
-	 * 
-	 * This method returns a Java Map containing exactly two entries. 
-	 * Northings can be accessed by the key returned by the static method northingKey().
-	 * Eastings can be accessed by the key returned by the static method eastingKey().
-	 * 
-	 * This method is a short-hand for the functionally-identical
-	 * public Map<String, Double> computeSVY21(double lat, double lon)
-	 * 
-	 * @param latlonCoordinate
-	 * @return
-	 */
-	public Map<String, Double> computeSVY21(Map<String, Double> latlonCoordinate) {
-		double latitude = latlonCoordinate.get(latitudeKey());
-		double longitude = latlonCoordinate.get(longitudeKey());
-		return computeSVY21(latitude, longitude);
-	}
-	
-	/**
-	 * Computes Latitude and Longitude based on an SVY21 coordinate.
-	 * 
-	 * This method returns a Java Map containing exactly two entries. 
-	 * Latitude can be accessed by the key returned by the static method latitudeKey().
-	 * Longitude can be accessed by the key returned by the static method longitudeKey().
-	 * 
 	 * @param N Northing based on SVY21.
 	 * @param E Easting based on SVY21.
 	 * @return the conversion result as a Java Map.
@@ -216,6 +178,25 @@ public class SVY21 {
 	}
 	
 	/**
+	 * Computes Latitude and Longitude based on an SVY21 coordinate.
+	 * 
+	 * This method returns a Java Map containing exactly two entries. 
+	 * Latitude can be accessed by the key returned by the static method latitudeKey().
+	 * Longitude can be accessed by the key returned by the static method longitudeKey().
+	 * 
+	 * This method is a short-hand for the functionally-identical
+	 * public Map<String, Double> computeLatLon(double N, double E)
+	 * 
+	 * @param svy21Coordinate
+	 * @return
+	 */
+	public Map<String, Double> computeLatLon(Map<String, Double> svy21Coordinate) {
+		double northing = svy21Coordinate.get(northingKey());
+		double easting = svy21Coordinate.get(eastingKey());
+		return computeLatLon(northing, easting);
+	}
+	
+	/**
 	 * Computes SVY21 Northing and Easting based on a Latitude and Longitude coordinate.
 	 * 
 	 * This method returns a Java Map containing exactly two entries. 
@@ -277,5 +258,24 @@ public class SVY21 {
 		result.put(northingKey(), N);
 		result.put(eastingKey(), E);
 		return result;
+	}
+	
+	/**
+	 * Computes SVY21 Northing and Easting based on a Latitude and Longitude coordinate.
+	 * 
+	 * This method returns a Java Map containing exactly two entries. 
+	 * Northings can be accessed by the key returned by the static method northingKey().
+	 * Eastings can be accessed by the key returned by the static method eastingKey().
+	 * 
+	 * This method is a short-hand for the functionally-identical
+	 * public Map<String, Double> computeSVY21(double lat, double lon)
+	 * 
+	 * @param latlonCoordinate
+	 * @return
+	 */
+	public Map<String, Double> computeSVY21(Map<String, Double> latlonCoordinate) {
+		double latitude = latlonCoordinate.get(latitudeKey());
+		double longitude = latlonCoordinate.get(longitudeKey());
+		return computeSVY21(latitude, longitude);
 	}
 }
