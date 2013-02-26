@@ -39,6 +39,22 @@ The Java class may be embedded in other projects. Feel free to specify your own 
     		System.out.println(resultLatLon);
        	}
     }
+		
+###Javascript###
+
+		// Initialization
+		var cv = new SVY21();
+
+		// Computing SVY21 from Lat/Lon
+		var lat = 1.2949192688485278;
+		var lon = 103.77367436885834;
+		var result = cv.computeSVY21(lat, lon);
+		console.log(result)
+
+		// Computing Lat/Lon from SVY21
+		var resultLatLon = cv.computeLatLon(result.N, result.E);
+		console.log(resultLatLon);
+
     
 ##Testing##
 The "Protected Areas And Protected Places Act" found [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=Id%3A%223ed25f04-0465-4eda-b05f-c0c7334e8840%22%20Status%3Ainforce;rec=0;whole=yes) lists some SVY21 points that correspond to vertices of hard-to-miss plots of land in Singapore.
