@@ -13,6 +13,8 @@ import java.util.TreeMap;
 public class SVY21 {
 	
 	// Map Keys
+	private static final String KEY_SVY21 = "svy21";
+	private static final String KEY_LATLON = "latlon";
 	private static final String KEY_EASTING = "easting";
 	private static final String KEY_NORTHING = "northing";
 	private static final String KEY_LONGITUDE = "longitude";
@@ -28,6 +30,7 @@ public class SVY21 {
 	public static String eastingKey() {
 		return KEY_EASTING;
 	}
+	
 	/**
 	 * Returns a String representing a Key in a Java Map associated with Latitude.
 	 * 
@@ -36,6 +39,18 @@ public class SVY21 {
 	public static String latitudeKey() {
 		return KEY_LATITUDE;
 	}
+	
+	/**
+	 * Returns a String representing a Key in a Java Map.
+	 * 
+	 * The presence of this key indicates that a returned Map is a Lat/Lon coordinate.
+	 * 
+	 * @return key associated with a Lat/Lon coordinate.
+	 */
+	public static String latlonCoordinateKey() {
+		return KEY_LATLON;
+	}
+	
 	/**
 	 * Returns a String representing a Key in a Java Map associated with Longitude.
 	 * 
@@ -51,6 +66,16 @@ public class SVY21 {
 	 */
 	public static String northingKey() {
 		return KEY_NORTHING;
+	}
+	/**
+	 * Returns a String representing a Key in a Java Map.
+	 * 
+	 * The presence of this key indicates that a returned Map is an SVY21 coordinate.
+	 * 
+	 * @return key associated with an SVY21 coordinate.
+	 */
+	public static String svy21CoordinateKey() {
+		return KEY_SVY21;
 	}
 	// Datum and Projection
 	final double a		= 6378137;
@@ -114,6 +139,10 @@ public class SVY21 {
 	 * Latitude can be accessed by the key returned by the static method latitudeKey().
 	 * Longitude can be accessed by the key returned by the static method longitudeKey().
 	 * 
+	 * The returned Map contains a key defined by latlonCoordinateKey() which indicates that
+	 * the contained data represents a Lat/Lon coordinate. The Map can be unpacked with the keys
+	 * latitudeKey() and longitudeKey().
+	 * 
 	 * @param N Northing based on SVY21.
 	 * @param E Easting based on SVY21.
 	 * @return the conversion result as a Java Map.
@@ -172,6 +201,7 @@ public class SVY21 {
 		double lon = (oLon * radRatio) + lonTerm1 - lonTerm2 + lonTerm3 - lonTerm4;
 
 		Map<String, Double> result = new TreeMap<String, Double>();
+		result.put(KEY_LATLON, 0.);
 		result.put(latitudeKey(), lat / radRatio);
 		result.put(longitudeKey(), lon / radRatio);
 		return result;
@@ -183,6 +213,10 @@ public class SVY21 {
 	 * This method returns a Java Map containing exactly two entries. 
 	 * Latitude can be accessed by the key returned by the static method latitudeKey().
 	 * Longitude can be accessed by the key returned by the static method longitudeKey().
+	 * 
+	 * The returned Map contains a key defined by latlonCoordinateKey() which indicates that
+	 * the contained data represents a Lat/Lon coordinate. The Map can be unpacked with the keys
+	 * latitudeKey() and longitudeKey().
 	 * 
 	 * This method is a short-hand for the functionally-identical
 	 * public Map<String, Double> computeLatLon(double N, double E)
@@ -202,6 +236,10 @@ public class SVY21 {
 	 * This method returns a Java Map containing exactly two entries. 
 	 * Northings can be accessed by the key returned by the static method northingKey().
 	 * Eastings can be accessed by the key returned by the static method eastingKey().
+	 * 
+	 * The returned Map contains a key defined by svy21CoordinateKey() which indicates that
+	 * the contained data represents an SVY21 coordinate. The Map can be unpacked with the keys
+	 * northingKey() and eastingKey().
 	 * 
 	 * @param lat latitude in degrees.
 	 * @param lon longitude in degrees.
@@ -255,6 +293,7 @@ public class SVY21 {
 		double E = Eo + k * v * w * cosLat * (1 + eTerm1 + eTerm2 + eTerm3);
 
 		Map<String, Double> result = new TreeMap<String, Double>();
+		result.put(KEY_SVY21, 0.);
 		result.put(northingKey(), N);
 		result.put(eastingKey(), E);
 		return result;
@@ -266,6 +305,10 @@ public class SVY21 {
 	 * This method returns a Java Map containing exactly two entries. 
 	 * Northings can be accessed by the key returned by the static method northingKey().
 	 * Eastings can be accessed by the key returned by the static method eastingKey().
+	 * 
+	 * The returned Map contains a key defined by svy21CoordinateKey() which indicates that
+	 * the contained data represents an SVY21 coordinate. The Map can be unpacked with the keys
+	 * northingKey() and eastingKey().
 	 * 
 	 * This method is a short-hand for the functionally-identical
 	 * public Map<String, Double> computeSVY21(double lat, double lon)
