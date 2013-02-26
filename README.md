@@ -75,15 +75,18 @@ The useful precision of the output also depends on the precision of the inputs.
 This library makes use of the equations in the following page:  
 [Transverse Mercator Transformation Formulae](http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx)
 
+##Other Languages##
+Feel free to port the code to other languages, and submit a pull request if you do!
+
 ##Future Direction##
 1. **Code quality**. This library was developed during a Hackathon, and needs to be brought up to production standard.
-2. A few parties have expressed interest in **JavaScript** support.
-3. Automated and/or more comprehensive **tests**.
-4. **Other languages**. 
+2. Automated and/or more comprehensive **tests**.
 
 ##Acknowledgements##
 Isaac Low  
 Jonathan Ong  
 Chua Wei Kuan  
+
+If you used this library in your project and found it useful, let us know!
 
 Created during Hack & Roll '13 by [NUS Hackers](http://nushackers.org/)
