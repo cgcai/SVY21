@@ -12,7 +12,7 @@ public class Driver {
 		System.out.println(resultNE);
 		
 		// Computing Lat/Lon from SVY21
-		Map<String, Double> resultLatLon = svy.computeLatLon(resultNE.get(svy.northingKey()), resultNE.get(svy.eastingKey()));
+		Map<String, Double> resultLatLon = svy.computeLatLon(resultNE.get(SVY21.northingKey()), resultNE.get(SVY21.eastingKey()));
 		System.out.println(resultLatLon);
 	}
 }
