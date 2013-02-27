@@ -1,5 +1,5 @@
+import net.qxcg.svy21.*;
 import java.util.Scanner;
-import java.util.Map;
 
 public class TestDriver {
 	private static final String COMMENT = "#";
@@ -49,21 +49,21 @@ public class TestDriver {
 			
 			// Perform conversion and unpack result.
 			double result1, result2;
-			Map<String, Double> conversionResult;
 			if (direction == 0) {
-				conversionResult = converter.computeSVY21(input1, input2);
-				result1 = conversionResult.get(SVY21.northingKey());
-				result2 = conversionResult.get(SVY21.eastingKey());
+				SVY21Coordinate conversionResult = converter.computeSVY21(input1, input2);
+				result1 = conversionResult.getNorthing();
+				result2 = conversionResult.getEasting();
 			} else {
-				conversionResult = converter.computeLatLon(input1, input2);
-				result1 = conversionResult.get(SVY21.latitudeKey());
-				result2 = conversionResult.get(SVY21.longitudeKey());
+				LatLonCoordinate conversionResult = converter.computeLatLon(input1, input2);
+				result1 = conversionResult.getLatitude();
+				result2 = conversionResult.getLongitude();
 			}
 			
 			if (fequals(result1, expected1) && fequals(result2, expected2)) {
 				System.out.format("Line %d: pass\n", line);
 			} else {
 				System.out.format("Line %d: FAIL. Expected: (%f, %f) Got: (%f, %f)\n", line, expected1, expected2, result1, result2);
+				failures++;
 			}
 		}
 		
