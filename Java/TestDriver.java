@@ -7,12 +7,10 @@ public class TestDriver {
 	private static final int TC_LENGTH = 5;
 	private static final int FCMP_PRECISION = 1000000000;
 	
-	private static final SVY21 converter = new SVY21();
-	
 	public static void main(String[] args) {
-		int line = 0;
-		int cases = 0;
-		int failures = 0;
+		int line		= 0;
+		int cases		= 0;
+		int failures	= 0;
 		String lineBuf;
 		Scanner sc = new Scanner(System.in);
 		
@@ -50,11 +48,11 @@ public class TestDriver {
 			// Perform conversion and unpack result.
 			double result1, result2;
 			if (direction == 0) {
-				SVY21Coordinate conversionResult = converter.computeSVY21(input1, input2);
+				SVY21Coordinate conversionResult = SVY21.computeSVY21(input1, input2);
 				result1 = conversionResult.getNorthing();
 				result2 = conversionResult.getEasting();
 			} else {
-				LatLonCoordinate conversionResult = converter.computeLatLon(input1, input2);
+				LatLonCoordinate conversionResult = SVY21.computeLatLon(input1, input2);
 				result1 = conversionResult.getLatitude();
 				result2 = conversionResult.getLongitude();
 			}

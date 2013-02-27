@@ -11,8 +11,7 @@ public class LatLonCoordinate {
 	}
 	
 	public SVY21Coordinate asSVY21() {
-		SVY21 svy = new SVY21();
-		return svy.computeSVY21(this);
+		return SVY21.computeSVY21(this);
 	}
 	
 	@Override

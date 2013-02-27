@@ -10,29 +10,24 @@ package net.qxcg.svy21;
  * http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx
  */
 public class SVY21 {
-	private final static double radRatio = Math.PI / 180;
+	private static final double radRatio = Math.PI / 180;
 	
 	// Datum and Projection
-	private final double a		= 6378137;
-	private final double f		= 1 / 298.257223563;
-	private final double oLat	= 1.366666;				// degrees
-	private final double oLon	= 103.833333;			// degrees
-	private final double No		= 38744.572;	
-	private final double Eo		= 28001.642;
-
-	private final double k		= 1;
-
+	private static final double a		= 6378137;
+	private static final double f		= 1 / 298.257223563;
+	private static final double oLat	= 1.366666;				// degrees
+	private static final double oLon	= 103.833333;			// degrees
+	private static final double No		= 38744.572;	
+	private static final double Eo		= 28001.642;
+	private static final double k		= 1;
+	
 	// Projection Constants
-	private final double b;
-	private final double e2, e4, e6;
-	private final double A0, A2, A4, A6;
-
-	/**
-	 * Class constructor.
-	 * 
-	 * Computes various projection constants based on WGS84 and SVY21.
-	 */
-	public SVY21() {
+	private static final double b;
+	private static final double e2, e4, e6;
+	private static final double A0, A2, A4, A6;
+	
+	// Initialize Projection Constants.
+	static {
 		b = a * (1 - f);
 
 		e2 = (2 * f) - (f * f);
@@ -45,20 +40,20 @@ public class SVY21 {
 		A6 = 35 * e6 / 3072;
 	}
 
-	private double calcM(double lat) {
+	private static double calcM(double lat) {
 		double latR = lat * radRatio;
 		double m = a * ((A0 * latR) - (A2 * Math.sin(2 * latR)) + (A4 * Math.sin(4 * latR)) - (A6 * Math.sin(6 * latR)));
 		return m;
 	}
 	
-	private double calcRho(double sin2Lat) {
+	private static double calcRho(double sin2Lat) {
 		double num = a * (1 - e2);
 		double denom = Math.pow(1 - e2 * sin2Lat, 3. / 2.);
 		double rho = num / denom;
 		return rho;
 	}
 	
-	private double calcV(double sin2Lat) {
+	private static double calcV(double sin2Lat) {
 		double poly = 1 - e2 * sin2Lat;
 		double v = a / Math.sqrt(poly);
 		return v;
@@ -75,7 +70,7 @@ public class SVY21 {
 	 * @param E Easting based on SVY21.
 	 * @return the conversion result a LatLonCoordinate.
 	 */
-	public LatLonCoordinate computeLatLon(double N, double E) {
+	public static LatLonCoordinate computeLatLon(double N, double E) {
 		double Nprime = N - No;
 		double Mo = calcM(oLat);
 		double Mprime = Mo + (Nprime / k);
@@ -144,7 +139,7 @@ public class SVY21 {
 	 * @param coord an SVY21Coordinate object to convert.
 	 * @return the conversion result a LatLonCoordinate.
 	 */
-	public LatLonCoordinate computeLatLon(SVY21Coordinate coord) {
+	public static LatLonCoordinate computeLatLon(SVY21Coordinate coord) {
 		double northing = coord.getNorthing();
 		double easting = coord.getEasting();
 		return computeLatLon(northing, easting);
@@ -161,7 +156,7 @@ public class SVY21 {
 	 * @param lon longitude in degrees.
 	 * @return the conversion result as an SVY21Coordinate.
 	 */
-	public SVY21Coordinate computeSVY21(double lat, double lon) {
+	public static SVY21Coordinate computeSVY21(double lat, double lon) {
 		double latR = lat * radRatio;
 		double sinLat = Math.sin(latR);
 		double sin2Lat = sinLat * sinLat;
@@ -224,7 +219,7 @@ public class SVY21 {
 	 * @param coord a LatLonCoordinate object to convert.
 	 * @return the conversion result an SVY21Coordinate.
 	 */
-	public SVY21Coordinate computeSVY21(LatLonCoordinate coord) {
+	public static SVY21Coordinate computeSVY21(LatLonCoordinate coord) {
 		double latitude = coord.getLatitude();
 		double longitude = coord.getLongitude();
 		return computeSVY21(latitude, longitude);
