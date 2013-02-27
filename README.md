@@ -21,20 +21,35 @@ The Python script is a ready-to-use converter. Run with `python -i SVY21.py`.
     (1.2949192688483109, 103.77367436887495)
     
 ###Java###
-The Java class may be embedded in other projects. Feel free to specify your own package details.
+The package `net.qxcg.svy21` contains all necessary files.
 
-	// Initialization
-	SVY21 svy = new SVY21();
-	
-	// Computing SVY21 from Lat/Lon
-	double lat = 1.2949192688485278;
-	double lon = 103.77367436885834;
-	Map<String, Double> resultNE = svy.computeSVY21(lat, lon);
-	System.out.println(resultNE);
-		
-	// Computing Lat/Lon from SVY21
-	Map<String, Double> resultLatLon = svy.computeLatLon(resultNE.get(SVY21.northingKey()), resultNE.get(SVY21.eastingKey()));
-	System.out.println(resultLatLon);
+The static class `SVY21` performs actual conversions. The classes `SVY21Coordinate` and `LatLonCoordinate` are immutable types that store SVY21 and Latitude/Longitude respectively. Conversions using `SVY21` return new copies of either coordinate type.  
+    
+    // Required files are in this package.
+    import net.qxcg.svy21.*;
+    
+    // Creating a latlon Coordinate.
+    LatLonCoordinate coord1 = new LatLonCoordinate(1.2949192688485278, 103.77367436885834);
+    
+    // Conversion using coordinate method.
+    SVY21Coordinate result = coord1.asSVY21();
+    
+    // Conversion using library.
+    result = SVY21.computeSVY21(coord1);
+    
+    // It is also possible perform conversion directly using two plain 'double' types.
+    double lat = coord1.getLatitude():
+    double lon = coord1.getLongitude();
+    result = SVY21.computeSVY21(lat, lon)
+    
+    // The reverse conversion also can be done using all three methods.
+    LatLonCoordinate reverseResult = result.asLatLon();
+    
+    reverseResult = SVY21.computeLatLon(result);
+    
+    double northing = result.getNorthing();
+    double easting = result.getEasting();
+    reverseResult = SVY21.computeLatLon(northing, easting);
 		
 ###Javascript###
 
