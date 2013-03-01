@@ -21,10 +21,12 @@ public class SVY21 {
 	private static final double Eo		= 28001.642;
 	private static final double k		= 1;
 	
-	// Projection Constants
+	// Computed Projection Constants
 	private static final double b;
 	private static final double e2, e4, e6;
 	private static final double A0, A2, A4, A6;
+	private static final double n, n2, n3, n4;
+	private static final double G;
 	
 	// Initialize Projection Constants.
 	static {
@@ -38,6 +40,13 @@ public class SVY21 {
 		A2 = (3. / 8.) * (e2 + (e4 / 4) + (15 * e6 / 128));
 		A4 = (15. / 256.) * (e4 + (3 * e6 / 4));
 		A6 = 35 * e6 / 3072;
+		
+		n = (a - b) / (a + b);
+		n2 = n * n;
+		n3 = n2 * n;
+		n4 = n2 * n2;
+		
+		G = a * (1 - n) * (1 - n2) * (1 + (9 * n2 / 4) + (225 * n4 / 64)) * radRatio;
 	}
 
 	private static double calcM(double lat) {
@@ -74,11 +83,6 @@ public class SVY21 {
 		double Nprime = N - No;
 		double Mo = calcM(oLat);
 		double Mprime = Mo + (Nprime / k);
-		double n = (a - b) / (a + b);
-		double n2 = n * n;
-		double n3 = n2 * n;
-		double n4 = n2 * n2;
-		double G = a * (1 - n) * (1 - n2) * (1 + (9 * n2 / 4) + (225 * n4 / 64)) * radRatio;
 		double sigma = (Mprime / G) * radRatio;
 
 		double latPrimeT1 = ((3 * n / 2) - (27 * n3 / 32)) * Math.sin(2 * sigma);
