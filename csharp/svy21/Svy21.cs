@@ -58,7 +58,10 @@ namespace SVY21
         // Calculates and returns the radius of curvature of the meridian.
         private static double CalculateRadiusOfCurvatureOfMeridian(double sinSquaredLatitude)
         {
-            throw new NotImplementedException();
+            double numerator = A*(1 - E2);
+            double denominator = Math.Pow(1 - E2*sinSquaredLatitude, 3.0/2.0);
+            double curvature = numerator/denominator;
+            return curvature;
         }
 
         // Calculates and returns the radius of curvature in the prime vertical.
