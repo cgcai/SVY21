@@ -14,4 +14,11 @@ thumbs.db
 _Resharper*
 *.DotSettings.user
 */PerfLogs/*
-*.user
+*.users
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+[Bb]in/
+[Oo]bj/
+
