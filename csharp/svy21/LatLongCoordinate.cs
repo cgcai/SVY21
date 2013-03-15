@@ -17,7 +17,7 @@ namespace SVY21
             Longitude = longitude;
         }
 
-        public Svy21Coordinate ToSvy21()
+        public Svy21Coordinate ToSvy21Coordinate()
         {
             return Svy21.ComputeSvy21(this);
         }
