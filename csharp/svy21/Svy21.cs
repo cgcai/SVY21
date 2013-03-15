@@ -67,7 +67,9 @@ namespace SVY21
         // Calculates and returns the radius of curvature in the prime vertical.
         private static double CalculateRadiusOfCurvatureInPrimeVertical(double sinSquaredLatitude)
         {
-            throw new NotImplementedException();
+            double denominator = Math.Sqrt(1 - E2*sinSquaredLatitude);
+            double radius = A/denominator;
+            return radius;
         }
 
         public static LatLongCoordinate ComputeLatitudeLongitude(double northing, double easting)
