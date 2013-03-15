@@ -47,9 +47,12 @@ namespace SVY21
         private const double A4 = (15.0/256.0)*(E4 + (3*E6/4));
         private const double A6 = 35*E6/3072;
 
-        private static double CalculateMeridian(double latitude)
+        private static double CalculateMeridianDistance(double latitude)
         {
-            throw new NotImplementedException();
+            double latitudeRadian = latitude*RadRatio;
+            double meridianDistance = A*((A0*latitudeRadian) - (A2*Math.Sin(2*latitudeRadian)) +
+                                         (A4*Math.Sin(4*latitudeRadian)) - (A6*Math.Sin(6*latitudeRadian)));
+            return meridianDistance;
         }
 
         private static double CalculateRho(double sinSquaredLatitude)
