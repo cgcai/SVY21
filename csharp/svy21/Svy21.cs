@@ -55,12 +55,14 @@ namespace SVY21
             return meridianDistance;
         }
 
-        private static double CalculateRho(double sinSquaredLatitude)
+        // Calculates and returns the radius of curvature of the meridian.
+        private static double CalculateRadiusOfCurvatureOfMeridian(double sinSquaredLatitude)
         {
             throw new NotImplementedException();
         }
 
-        private static double CalculateCurvature(double sinSquaredLatitude)
+        // Calculates and returns the radius of curvature in the prime vertical.
+        private static double CalculateRadiusOfCurvatureInPrimeVertical(double sinSquaredLatitude)
         {
             throw new NotImplementedException();
         }
