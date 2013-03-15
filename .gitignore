@@ -2,3 +2,16 @@
 Java/.settings
 .classpath
 .project
+
+# C-Sharp/.NET
+*/bin/*
+*/bld/*
+*/obj/*
+*/misc/*
+*/SubmissionInfo/*
+thumbs.db
+*.suo
+_Resharper*
+*.DotSettings.user
+*/PerfLogs/*
+*.user
