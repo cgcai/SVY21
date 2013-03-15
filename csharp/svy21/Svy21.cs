@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace SVY21
 {
+    /**
+     * Ported from the Java implementation of SVY21.
+     * 
+     * This class provides methods to convert between SVY21 and the standard
+     * Latitude/Longitude coordinate system.
+     */
     public class Svy21
     {
         private static double CalculateMeridian(double latitude)
