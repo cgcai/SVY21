@@ -51,7 +51,7 @@ The static class `SVY21` performs actual conversions. The classes `SVY21Coordina
     double easting = result.getEasting();
     reverseResult = SVY21.computeLatLon(northing, easting);
 		
-###Javascript###
+###JavaScript###
 
     // Initialization
 	var cv = new SVY21();
