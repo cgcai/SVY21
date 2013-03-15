@@ -53,6 +53,12 @@
     <Compile Include="Svy21Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SVY21\SVY21.csproj">
+      <Project>{D92F9036-9E61-440B-A7B8-9609E2CA08BB}</Project>
+      <Name>SVY21</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
