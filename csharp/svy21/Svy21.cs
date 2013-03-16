@@ -131,7 +131,7 @@ namespace SVY21
 
         public static LatLongCoordinate ComputeLatitudeLongitude(Svy21Coordinate coordinate)
         {
-            throw new NotImplementedException();
+            return ComputeLatitudeLongitude(coordinate.Northing, coordinate.Easting);
         }
 
         public static Svy21Coordinate ComputeSvy21(double latitude, double longitude)
