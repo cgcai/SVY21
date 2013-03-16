@@ -11,7 +11,7 @@
         {
             unchecked
             {
-                return (Latitude.GetHashCode()*397) ^ Longitude.GetHashCode();
+                return (Latitude.GetHashCode() * 397) ^ Longitude.GetHashCode();
             }
         }
 
@@ -34,7 +34,9 @@
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
-            return Equals((LatLongCoordinate) obj);
+            return Equals((LatLongCoordinate)obj);
+        }
+
         }
     }
 }
