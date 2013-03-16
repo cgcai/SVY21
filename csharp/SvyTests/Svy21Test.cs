@@ -12,12 +12,6 @@ namespace SvyTests
             LatLongCoordinate expected, actual;
             Svy21Coordinate test;
             
-            // Sample test from Java tests.txt file.
-            expected = new LatLongCoordinate(1.3699278977737488, 103.85695034976466);
-            test = new Svy21Coordinate(39105.269, 30629.967);
-            actual = Svy21.ComputeLatitudeLongitude(test);
-            Assert.AreEqual(expected, actual);
-
             // SVY21 reference point.
             expected = new LatLongCoordinate(1.366666, 103.833333);
             test = new Svy21Coordinate(38744.572, 28001.642);
@@ -25,8 +19,8 @@ namespace SvyTests
             Assert.AreEqual(expected, actual);
 
             // Corner of Ang Mo Kio 66kV Substation.
-            expected = new LatLongCoordinate(1.4520670518379692, 103.83080332777138);
-            test = new Svy21Coordinate(48187.789, 27720.130);
+            expected = new LatLongCoordinate(1.3699278977737488, 103.856950349764668);
+            test = new Svy21Coordinate(39105.269, 30629.967);
             actual = Svy21.ComputeLatitudeLongitude(test);
             Assert.AreEqual(expected, actual);
             
@@ -48,12 +42,6 @@ namespace SvyTests
         {
             Svy21Coordinate expected, actual;
             LatLongCoordinate test;
-            
-            // Sample test from Java tests.txt file.
-            expected = new Svy21Coordinate(39105.269, 30629.967);
-            test = new LatLongCoordinate(1.3699278977737488, 103.85695034976466);
-            actual = Svy21.ComputeSvy21(test);
-            Assert.AreEqual(expected, actual);
 
             // SVY21 Reference Point.
             expected = new Svy21Coordinate(38744.572, 28001.642);
@@ -62,8 +50,8 @@ namespace SvyTests
             Assert.AreEqual(expected, actual);
 
             // Corner of Ang Mo Kio 66kV Substation.
-            expected = new Svy21Coordinate(48187.789, 27720.130);
-            test = new LatLongCoordinate(1.4520670518379692, 103.83080332777138);
+            expected = new Svy21Coordinate(39105.269, 30629.967);
+            test = new LatLongCoordinate(1.3699278977737488, 103.85695034976466);
             actual = Svy21.ComputeSvy21(test);
             Assert.AreEqual(expected, actual);
 
