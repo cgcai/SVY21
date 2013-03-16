@@ -36,5 +36,10 @@
         {
             return Easting.Equals(other.Easting) && Northing.Equals(other.Northing);
         }
+
+        public override string ToString()
+        {
+            return "Svy21Coordinate [Northing=" + Northing + ", Easting=" + Easting + "]";
+        }
     }
 }

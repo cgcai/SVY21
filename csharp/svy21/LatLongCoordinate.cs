@@ -37,6 +37,9 @@
             return Equals((LatLongCoordinate)obj);
         }
 
+        public override string ToString()
+        {
+            return "LatLongCoordinate [Latitude=" + Latitude + ", Longitude=" + Longitude + "]";
         }
     }
 }
