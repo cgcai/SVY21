@@ -6,6 +6,8 @@ namespace SvyTests
     [TestClass]
     public class Svy21Test
     {
+        private const double Tolerance = 0.0000000001;
+
         [TestMethod]
         public void Svy21ToLatLongTest()
         {
@@ -16,25 +18,29 @@ namespace SvyTests
             expected = new LatLongCoordinate(1.366666, 103.833333);
             test = new Svy21Coordinate(38744.572, 28001.642);
             actual = Svy21.ComputeLatitudeLongitude(test);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.Latitude, actual.Latitude, Tolerance);
+            Assert.AreEqual(expected.Longitude, actual.Longitude, Tolerance);
 
             // Corner of Ang Mo Kio 66kV Substation.
             expected = new LatLongCoordinate(1.3699278977737488, 103.856950349764668);
             test = new Svy21Coordinate(39105.269, 30629.967);
             actual = Svy21.ComputeLatitudeLongitude(test);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.Latitude, actual.Latitude, Tolerance);
+            Assert.AreEqual(expected.Longitude, actual.Longitude, Tolerance);
             
             // Corner of Jurong Lake Canal 400kV Cable Bridge.
             expected = new LatLongCoordinate(1.3446255443241177, 103.72794378041792);
             test = new Svy21Coordinate(36307.704, 16272.970);
             actual = Svy21.ComputeLatitudeLongitude(test);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.Latitude, actual.Latitude, Tolerance);
+            Assert.AreEqual(expected.Longitude, actual.Longitude, Tolerance);
 
             // Corner of Sembawang 66kV Substation.
             expected = new LatLongCoordinate(1.4520670518379692, 103.83080332777138);
             test = new Svy21Coordinate(48187.789, 27720.130);
             actual = Svy21.ComputeLatitudeLongitude(test);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.Latitude, actual.Latitude, Tolerance);
+            Assert.AreEqual(expected.Longitude, actual.Longitude, Tolerance);
         }
 
         [TestMethod]
