@@ -13,7 +13,7 @@
         public double Easting { get; set; }
         public double Northing { get; set; }
 
-        public Svy21Coordinate(double easting, double northing)
+        public Svy21Coordinate(double northing, double easting)
         {
             Easting = easting;
             Northing = northing;
