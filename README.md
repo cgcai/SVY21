@@ -38,9 +38,9 @@ The static class `SVY21` performs actual conversions. The classes `SVY21Coordina
     result = SVY21.computeSVY21(coord1);
     
     // It is also possible perform conversion directly using two plain 'double' types.
-    double lat = coord1.getLatitude():
+    double lat = coord1.getLatitude();
     double lon = coord1.getLongitude();
-    result = SVY21.computeSVY21(lat, lon)
+    result = SVY21.computeSVY21(lat, lon);
     
     // The reverse conversion also can be done using all three methods.
     LatLonCoordinate reverseResult = result.asLatLon();
@@ -51,7 +51,7 @@ The static class `SVY21` performs actual conversions. The classes `SVY21Coordina
     double easting = result.getEasting();
     reverseResult = SVY21.computeLatLon(northing, easting);
 		
-###Javascript###
+###JavaScript###
 
     // Initialization
 	var cv = new SVY21();
@@ -60,11 +60,40 @@ The static class `SVY21` performs actual conversions. The classes `SVY21Coordina
 	var lat = 1.2949192688485278;
 	var lon = 103.77367436885834;
 	var result = cv.computeSVY21(lat, lon);
-	console.log(result)
+	console.log(result);
 
 	// Computing Lat/Lon from SVY21
 	var resultLatLon = cv.computeLatLon(result.N, result.E);
 	console.log(resultLatLon);
+
+###C\# ###
+The C\# implementation was ported from the Java implementation, and includes the same tests (executable in Visual Studio.)
+Unlike the Java implementation, however, `LatLongCoordinate` and `Svy21Coordinate` are mutable.
+
+The included solution can be built to produce a class library (`SVY21.dll`) which can be included in any project.
+Alternatively, the three classes (`LatLongCoordinate`, `Svy21Coordinate`, and `Svy21`) can be included directly.
+
+    // Creating a Lat/Long Coordinate.
+    LatLongCoordinate latLong = new LatLongCoordinate(1.2949192688485278, 103.77367436885834);
+    
+    // "Ask" the object to convert itself.
+    Svy21Coordinate converted = latLong.ToSvy21Coordinate();
+    
+    // Conversion using library.
+    converted = Svy21.ComputeSvy21(latLong);
+    
+    // Conversion can also be done directly using two doubles.
+    double latitude = latLong.Latitude;
+    double longitude = latLong.Longitude;
+    converted = Svy21.ComputeSvy21(latitude, longitude);
+    
+    // Conversion from SVY21 to Latitude/Longitude can also be done using all three methods.
+    LatLongCoordinate reverse = converted.ToLatLongCoordinate();
+    reverse = Svy21.ComputeLatitudeLongitude(converted);
+    
+    double northing = converted.Northing;
+    double easting = converted.Easting;
+    reverse = Svy21.ComputeLatitudeLongitude(northing, easting);
 
 ##Testing##
 The "Protected Areas And Protected Places Act" found [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=Id%3A%223ed25f04-0465-4eda-b05f-c0c7334e8840%22%20Status%3Ainforce;rec=0;whole=yes) lists some SVY21 points that correspond to vertices of hard-to-miss plots of land in Singapore.
