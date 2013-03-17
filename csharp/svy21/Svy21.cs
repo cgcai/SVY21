@@ -42,6 +42,8 @@ namespace SVY21
         private const double A4 = (15.0 / 256.0) * (E4 + (3 * E6 / 4));
         private const double A6 = 35 * E6 / 3072;
 
+        // Calculates and returns the meridian distance.
+        // calcM in other implementations.
         private static double CalculateMeridianDistance(double latitude)
         {
             double latitudeRadian = latitude * RadRatio;
@@ -51,6 +53,7 @@ namespace SVY21
         }
 
         // Calculates and returns the radius of curvature of the meridian.
+        // calcRho in other implementations.
         private static double CalculateRadiusOfCurvatureOfMeridian(double sinSquaredLatitude)
         {
             double numerator = A * (1 - E2);
@@ -60,6 +63,7 @@ namespace SVY21
         }
 
         // Calculates and returns the radius of curvature in the prime vertical.
+        // calcV in other implementations.
         private static double CalculateRadiusOfCurvatureInPrimeVertical(double sinSquaredLatitude)
         {
             double denominator = Math.Sqrt(1 - E2 * sinSquaredLatitude);
