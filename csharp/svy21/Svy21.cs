@@ -135,12 +135,59 @@ namespace SVY21
 
         public static Svy21Coordinate ComputeSvy21(double latitude, double longitude)
         {
-            throw new NotImplementedException();
+            // Naming convention: sin2Lat = "square of sin(lat)" = Math.pow(sin(lat), 2.0)
+            double latR = latitude * RadRatio;
+            double sinLat = Math.Sin(latR);
+            double sin2Lat = sinLat * sinLat;
+            double cosLat = Math.Cos(latR);
+            double cos2Lat = cosLat * cosLat;
+            double cos3Lat = cos2Lat * cosLat;
+            double cos4Lat = cos3Lat * cosLat;
+            double cos5Lat = cos3Lat * cos2Lat;
+            double cos6Lat = cos5Lat * cosLat;
+            double cos7Lat = cos5Lat * cos2Lat;
+
+            double rho = CalculateRadiusOfCurvatureOfMeridian(sin2Lat);
+            double v = CalculateRadiusOfCurvatureInPrimeVertical(sin2Lat);
+            double psi = v / rho;
+            double t = Math.Tan(latR);
+            double w = (longitude - OLon) * RadRatio;
+            double M = CalculateMeridianDistance(latitude);
+            double Mo = CalculateMeridianDistance(OLat);
+
+            // Naming convention: the trailing number is the power of the variable.
+            double w2 = w * w;
+            double w4 = w2 * w2;
+            double w6 = w4 * w2;
+            double w8 = w6 * w2;
+            double psi2 = psi * psi;
+            double psi3 = psi2 * psi;
+            double psi4 = psi2 * psi2;
+            double t2 = t * t;
+            double t4 = t2 * t2;
+            double t6 = t4 * t2;
+
+            // Compute Northing.
+            // Naming convention: nTerm1..4 are terms in an expression, not powers.
+            double nTerm1 = w2 / 2 * v * sinLat * cosLat;
+            double nTerm2 = w4 / 24 * v * sinLat * cos3Lat * (4 * psi2 + psi - t2);
+            double nTerm3 = w6 / 720 * v * sinLat * cos5Lat * ((8 * psi4) * (11 - 24 * t2) - (28 * psi3) * (1 - 6 * t2) + psi2 * (1 - 32 * t2) - psi * 2 * t2 + t4);
+            double nTerm4 = w8 / 40320 * v * sinLat * cos7Lat * (1385 - 3111 * t2 + 543 * t4 - t6);
+            double northing = No + K * (M - Mo + nTerm1 + nTerm2 + nTerm3 + nTerm4);
+
+            // Compute Easting.
+            // Naming convention: eTerm1..3 are terms in an expression, not powers.
+            double eTerm1 = w2 / 6 * cos2Lat * (psi - t2);
+            double eTerm2 = w4 / 120 * cos4Lat * ((4 * psi3) * (1 - 6 * t2) + psi2 * (1 + 8 * t2) - psi * 2 * t2 + t4);
+            double eTerm3 = w6 / 5040 * cos6Lat * (61 - 479 * t2 + 179 * t4 - t6);
+            double easting = Eo + K * v * w * cosLat * (1 + eTerm1 + eTerm2 + eTerm3);
+
+            return new Svy21Coordinate(northing, easting);
         }
 
         public static Svy21Coordinate ComputeSvy21(LatLongCoordinate coordinate)
         {
-            throw new NotImplementedException();
+            return ComputeSvy21(coordinate.Latitude, coordinate.Longitude);
         }
     }
 }
