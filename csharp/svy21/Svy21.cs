@@ -73,7 +73,7 @@ namespace SVY21
 
         public static LatLongCoordinate ComputeLatitudeLongitude(double northing, double easting)
         {
-            double Nprime = N - No;
+            double Nprime = northing - No;
             double Mo = CalculateMeridianDistance(OLat);
             double Mprime = Mo + (Nprime / K);
             double sigma = (Mprime / G) * RadRatio;
