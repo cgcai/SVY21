@@ -3,6 +3,26 @@ SVY21
 A **Free** and **Open Source** Library to convert between Lat/Lon, and SVY21.
 
 ##Usage##
+###Ruby###
+The Ruby version is packaged as a [gem](https://rubygems.org/gems/SVY21).
+
+To install
+
+    gem "SVY21", "~> 1.0.0"
+
+Usage
+
+    # 570 Ang Mo Kio Avenue 10
+    # lat/lon
+    lat_lon = SVY21.svy21_to_lat_lon(39105.269, 30629.967)
+    puts "latitude: #{lat_long[0]}"
+    puts "longitude: #{lat_long[1]}"
+    
+    # svy21
+    northing_easting = SVY21.lat_lon_to_svy21(1.3699278977737488, 103.85695034976467)
+    puts "northing: #{northing_easting[0]}"
+    puts "easting: #{northing_easting[1]}"
+
 ###Python###
 The Python script is a ready-to-use converter. Run with `python -i SVY21.py`.
 
