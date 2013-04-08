@@ -8,10 +8,12 @@ The Ruby version is packaged as a [gem](https://rubygems.org/gems/SVY21).
 
 To install
 
-    gem "SVY21", "~> 1.0.0"
+    gem "svy21", "~> 1.0.1"
 
 Usage
 
+    require 'svy21'
+    
     # 570 Ang Mo Kio Avenue 10
     # lat/lon
     lat_lon = SVY21.svy21_to_lat_lon(39105.269, 30629.967)
