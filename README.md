@@ -117,6 +117,21 @@ Alternatively, the three classes (`LatLongCoordinate`, `Svy21Coordinate`, and `S
     double easting = converted.Easting;
     reverse = Svy21.ComputeLatitudeLongitude(northing, easting);
 
+##C++##
+ 	// Initialization
+	SVY21 svy21;
+
+	// Computing SVY21 from Lat/Lon
+	double lat = 1.2949192688485278;
+	double lon = 103.77367436885834;
+	double northing, easting;
+	svy21.latLonToSVY21(lat, lon, &northing, &easting);
+	printf("%lf %lf\n", northing, easting);
+
+	// Computing Lat/Lon from SVY21
+	svy21.SVY21ToLatLon(northing, easting, &lat, &lon);
+	printf("%lf %lf\n", lat, lon);
+
 ##Testing##
 The "Protected Areas And Protected Places Act" found [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=Id%3A%223ed25f04-0465-4eda-b05f-c0c7334e8840%22%20Status%3Ainforce;rec=0;whole=yes) lists some SVY21 points that correspond to vertices of hard-to-miss plots of land in Singapore.
 
