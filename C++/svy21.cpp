@@ -146,10 +146,11 @@ void SVY21::SVY21ToLatLon(double northing, double easting, double *lat, double *
 	double latTerm3 = latFactor * ((Eprime * x5) / 720.0) * ((8.0 * psiPrime4) * (11.0 - 24.0 * tPrime2) - (12.0 * psiPrime3) * (21.0 - 71.0 * tPrime2) + (15.0 * psiPrime2) * (15.0 - 98.0 * tPrime2 + 15.0 * tPrime4) + (180.0 * psiPrime) * (5.0 * tPrime2 - 3.0 * tPrime4) + 360.0 * tPrime4);
 	double latTerm4 = latFactor * ((Eprime * x7) / 40320.0) * (1385.0 - 3633.0 * tPrime2 + 4095.0 * tPrime4 + 1575.0 * tPrime6);
 	
-	*lat = (latPrime - latTerm1 + latTerm2 - latTerm3 + latTerm4) / (PI / 180.0);
+	double latRad = latPrime - latTerm1 + latTerm2 - latTerm3 + latTerm4;
+	*lat = latRad / (PI / 180.0);
 
 	// Compute Longitude
-	double secLatPrime = 1.0 / cos(*lat);
+	double secLatPrime = 1.0 / cos(latRad);
 	double lonTerm1 = x * secLatPrime;
 	double lonTerm2 = ((x3 * secLatPrime) / 6.0) * (psiPrime + 2.0 * tPrime2);
 	double lonTerm3 = ((x5 * secLatPrime) / 120.0) * ((-4.0 * psiPrime3) * (1.0 - 6.0 * tPrime2) + psiPrime2 * (9.0 - 68.0 * tPrime2) + 72.0 * psiPrime * tPrime2 + 24.0 * tPrime4);
