@@ -132,6 +132,14 @@ Alternatively, the three classes (`LatLongCoordinate`, `Svy21Coordinate`, and `S
 	svy21.SVY21ToLatLon(northing, easting, &lat, &lon);
 	printf("%lf %lf\n", lat, lon);
 
+##Swift##
+    // Computing SVY21 from Lat/Lon
+    var coordinates = CLLocationCoordinate2D(latitude: 1.366666, longitude: 103.833333)
+    var result: Svy21Coordinate = Svy21.ComputeSvy21(coordinate: coordinates)
+
+    // Computing SVY21 from Lat/Lon
+    var result = Svy21.ComputeLatitudeLongitude(northing: 38744.572, easting: 28001.642)
+
 ##Testing##
 The "Protected Areas And Protected Places Act" found [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=Id%3A%223ed25f04-0465-4eda-b05f-c0c7334e8840%22%20Status%3Ainforce;rec=0;whole=yes) lists some SVY21 points that correspond to vertices of hard-to-miss plots of land in Singapore.
 
