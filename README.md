@@ -119,12 +119,12 @@ Alternatively, the three classes (`LatLongCoordinate`, `Svy21Coordinate`, and `S
 
 ##C++##
  	// Initialization
-	SVY21 svy21;
+	SVY21 svy21; 
 
-	// Computing SVY21 from Lat/Lon
-	double lat = 1.2949192688485278;
-	double lon = 103.77367436885834;
-	double northing, easting;
+	// Computing SVY21 from Lat/Lon 
+	double lat = 1.2949192688485278; 
+	double lon = 103.77367436885834; 
+	double northing, easting; 
 	svy21.latLonToSVY21(lat, lon, &northing, &easting);
 	printf("%lf %lf\n", northing, easting);
 
@@ -133,12 +133,13 @@ Alternatively, the three classes (`LatLongCoordinate`, `Svy21Coordinate`, and `S
 	printf("%lf %lf\n", lat, lon);
 
 ##Swift##
-    // Computing SVY21 from Lat/Lon
-    var coordinates = CLLocationCoordinate2D(latitude: 1.366666, longitude: 103.833333)
-    var result: Svy21Coordinate = Svy21.ComputeSvy21(coordinate: coordinates)
 
-    // Computing SVY21 from Lat/Lon
-    var result = Svy21.ComputeLatitudeLongitude(northing: 38744.572, easting: 28001.642)
+    // Computing SVY21 from Lat/Lon 
+    var coordinates = CLLocationCoordinate2D(latitude: 1.366666, longitude:  103.833333) 
+    var result: Svy21Coordinate = Svy21.ComputeSvy21(coordinate: coordinates) 
+
+    // Computing SVY21 from Lat/Lon 
+    var result = Svy21.ComputeLatitudeLongitude(northing: 38744.572, easting: 28001.642) 
 
 ##Testing##
 The "Protected Areas And Protected Places Act" found [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=Id%3A%223ed25f04-0465-4eda-b05f-c0c7334e8840%22%20Status%3Ainforce;rec=0;whole=yes) lists some SVY21 points that correspond to vertices of hard-to-miss plots of land in Singapore.
