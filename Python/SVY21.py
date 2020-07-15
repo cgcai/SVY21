@@ -167,31 +167,31 @@ class SVY21:
         lon = (self.oLon * math.pi / 180) + lonTerm1 - lonTerm2 + lonTerm3 - lonTerm4
 
         #X IS LON AND Y IS LAT
-        return (lon / (math.pi / 180), lat / (math.pi / 180))
+        return (lat / (math.pi / 180), lon / (math.pi / 180))
 
 
+def main():
+    cv = SVY21()
+    with open(argv[2], "a") as output:
+        write = csv.writer(output)
+        write.writerow(["Y", "X"])
+    output.close()
 
-cv = SVY21()
-with open(argv[2], "a") as output:
-    write = csv.writer(output)
-    write.writerow(["X", "Y"])
-output.close()
+    with open(argv[1], 'r') as csvfile:
+        input = csv.reader(csvfile)
+        next(input)
+        for row in input:
+            # print(row[0], row[1])
+            x = float(row[1])
+            y = float(row[0])
+            result = cv.computeLatLon(y, x)
 
-with open(argv[1], 'r') as csvfile:
-    input = csv.reader(csvfile)
-    next(input)
-    for row in input:
-        # print(row[0], row[1])
-        x = float(row[0])
-        y = float(row[1])
-        result = cv.computeLatLon(y, x)
+            with open(argv[2], "a") as output:
+                write = csv.writer(output)
+                write.writerow(result)
 
-        with open(argv[2], "a") as output:
-            write = csv.writer(output)
-            write.writerow(result)
+            output.close()
 
-        output.close()
+        print("Done! Check output.csv file in folder")
 
-    print("Done! Check output.csv file in folder")
-    
-csvfile.close()
+    csvfile.close()
