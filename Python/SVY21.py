@@ -1,9 +1,6 @@
 #! /usr/bin/python
 
 import math
-from sys import argv, exit
-import csv
-
 
 class SVY21:
     # Ref: http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx
@@ -166,14 +163,17 @@ class SVY21:
         lonTerm4 = ((x7 * secLatPrime) / 5040) * (61 + 662 * tPrime2 + 1320 * tPrime4 + 720 * tPrime6)
         lon = (self.oLon * math.pi / 180) + lonTerm1 - lonTerm2 + lonTerm3 - lonTerm4
 
-        #X IS LON AND Y IS LAT
         return (lat / (math.pi / 180), lon / (math.pi / 180))
-
-
-def main():
+  
+def csvConverter():
+    from sys import argv
+    import csv
+    
     cv = SVY21()
     with open(argv[2], "a") as output:
         write = csv.writer(output)
+        
+        #Y IS LAT AND X IS LON
         write.writerow(["Y", "X"])
     output.close()
 
@@ -195,3 +195,12 @@ def main():
         print("Done! Check output.csv file in folder")
 
     csvfile.close()
+    
+    
+# Converts 2 columns (first column must have y_coord header, second column must have x_coord header) 
+# in a csv file into columns of Latitude and Longitude into a separate csv file in directory.
+
+# Usage: python SVY21.py file1.csv file2.csv (Whereas file1.csv is the name of our input file, and file2.csv is the name you want your output file to be)
+if __name__ == '__main__':
+    csvConverter()
+    
