@@ -117,7 +117,7 @@ Alternatively, the three classes (`LatLongCoordinate`, `Svy21Coordinate`, and `S
     double easting = converted.Easting;
     reverse = Svy21.ComputeLatitudeLongitude(northing, easting);
 
-## C++
+### C++
  	// Initialization
 	SVY21 svy21;
 
