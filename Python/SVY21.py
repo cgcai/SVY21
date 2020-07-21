@@ -4,7 +4,7 @@ import math
 
 class SVY21:
     # Ref: http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx
-    
+
     # WGS84 Datum
     a = 6378137
     f = 1 / 298.257223563
@@ -14,13 +14,13 @@ class SVY21:
     # Latitude: 1 22 02.9154 N, longitude: 103 49 31.9752 E (of Greenwich).
 
     # Known Issue: Setting (oLat, oLon) to the exact coordinates specified above
-    # results in computation being slightly off. The values below give the most 
+    # results in computation being slightly off. The values below give the most
     # accurate represenation of test data.
-    oLat = 1.366666     # origin's lat in degrees
-    oLon = 103.833333   # origin's lon in degrees
-    oN = 38744.572      # false Northing
-    oE = 28001.642      # false Easting
-    k = 1               # scale factor
+    oLat = 1.366666  # origin's lat in degrees
+    oLon = 103.833333  # origin's lon in degrees
+    oN = 38744.572  # false Northing
+    oE = 28001.642  # false Easting
+    k = 1  # scale factor
 
     #
     def __init__(self):
@@ -74,7 +74,8 @@ class SVY21:
         # Compute Northing
         nTerm1 = w2 / 2 * v * sinLat * cosLat
         nTerm2 = w4 / 24 * v * sinLat * cos3Lat * (4 * psi2 + psi - t2)
-        nTerm3 = w6 / 720 * v * sinLat * cos5Lat * ((8 * psi4) * (11 - 24 * t2) - (28 * psi3) * (1 - 6 * t2) + psi2 * (1 - 32 * t2) - psi * 2 * t2 + t4)
+        nTerm3 = w6 / 720 * v * sinLat * cos5Lat * (
+                (8 * psi4) * (11 - 24 * t2) - (28 * psi3) * (1 - 6 * t2) + psi2 * (1 - 32 * t2) - psi * 2 * t2 + t4)
         nTerm4 = w8 / 40320 * v * sinLat * cos7Lat * (1385 - 3111 * t2 + 543 * t4 - t6)
         N = self.oN + self.k * (M - Mo + nTerm1 + nTerm2 + nTerm3 + nTerm4)
 
@@ -88,7 +89,8 @@ class SVY21:
 
     def calcM(self, lat):
         latR = lat * math.pi / 180
-        return self.a * ((self.A0 * latR) - (self.A2 * math.sin(2 * latR)) + (self.A4 * math.sin(4 * latR)) - (self.A6 * math.sin(6 * latR)))
+        return self.a * ((self.A0 * latR) - (self.A2 * math.sin(2 * latR)) + (self.A4 * math.sin(4 * latR)) - (
+                self.A6 * math.sin(6 * latR)))
 
     def calcRho(self, sin2Lat):
         num = self.a * (1 - self.e2)
@@ -113,7 +115,7 @@ class SVY21:
         n4 = n2 * n2
         G = self.a * (1 - n) * (1 - n2) * (1 + (9 * n2 / 4) + (225 * n4 / 64)) * (math.pi / 180)
         sigma = (Mprime * math.pi) / (180. * G)
-        
+
         latPrimeT1 = ((3 * n / 2) - (27 * n3 / 32)) * math.sin(2 * sigma)
         latPrimeT2 = ((21 * n2 / 16) - (55 * n4 / 32)) * math.sin(4 * sigma)
         latPrimeT3 = (151 * n3 / 96) * math.sin(6 * sigma)
@@ -143,8 +145,12 @@ class SVY21:
         # Compute Latitude
         latFactor = tPrime / (self.k * rhoPrime)
         latTerm1 = latFactor * ((Eprime * x) / 2)
-        latTerm2 = latFactor * ((Eprime * x3) / 24) * ((-4 * psiPrime2) + (9 * psiPrime) * (1 - tPrime2) + (12 * tPrime2))
-        latTerm3 = latFactor * ((Eprime * x5) / 720) * ((8 * psiPrime4) * (11 - 24 * tPrime2) - (12 * psiPrime3) * (21 - 71 * tPrime2) + (15 * psiPrime2) * (15 - 98 * tPrime2 + 15 * tPrime4) + (180 * psiPrime) * (5 * tPrime2 - 3 * tPrime4) + 360 * tPrime4)
+        latTerm2 = latFactor * ((Eprime * x3) / 24) * (
+                (-4 * psiPrime2) + (9 * psiPrime) * (1 - tPrime2) + (12 * tPrime2))
+        latTerm3 = latFactor * ((Eprime * x5) / 720) * (
+                (8 * psiPrime4) * (11 - 24 * tPrime2) - (12 * psiPrime3) * (21 - 71 * tPrime2) + (
+                15 * psiPrime2) * (15 - 98 * tPrime2 + 15 * tPrime4) + (180 * psiPrime) * (
+                        5 * tPrime2 - 3 * tPrime4) + 360 * tPrime4)
         latTerm4 = latFactor * ((Eprime * x7) / 40320) * (1385 - 3633 * tPrime2 + 4095 * tPrime4 + 1575 * tPrime6)
         lat = latPrime - latTerm1 + latTerm2 - latTerm3 + latTerm4
 
@@ -152,8 +158,49 @@ class SVY21:
         secLatPrime = 1. / math.cos(lat)
         lonTerm1 = x * secLatPrime
         lonTerm2 = ((x3 * secLatPrime) / 6) * (psiPrime + 2 * tPrime2)
-        lonTerm3 = ((x5 * secLatPrime) / 120) * ((-4 * psiPrime3) * (1 - 6 * tPrime2) + psiPrime2 * (9 - 68 * tPrime2) + 72 * psiPrime * tPrime2 + 24 * tPrime4)
+        lonTerm3 = ((x5 * secLatPrime) / 120) * ((-4 * psiPrime3) * (1 - 6 * tPrime2) + psiPrime2 * (
+                9 - 68 * tPrime2) + 72 * psiPrime * tPrime2 + 24 * tPrime4)
         lonTerm4 = ((x7 * secLatPrime) / 5040) * (61 + 662 * tPrime2 + 1320 * tPrime4 + 720 * tPrime6)
         lon = (self.oLon * math.pi / 180) + lonTerm1 - lonTerm2 + lonTerm3 - lonTerm4
 
         return (lat / (math.pi / 180), lon / (math.pi / 180))
+  
+def csvConverter():
+    from sys import argv
+    import csv
+    
+    cv = SVY21()
+    with open(argv[2], "a") as output:
+        write = csv.writer(output)
+        
+        #Y IS LAT AND X IS LON
+        write.writerow(["Y", "X"])
+    output.close()
+
+    with open(argv[1], 'r') as csvfile:
+        input = csv.reader(csvfile)
+        next(input)
+        for row in input:
+            # print(row[0], row[1])
+            x = float(row[1])
+            y = float(row[0])
+            result = cv.computeLatLon(y, x)
+
+            with open(argv[2], "a") as output:
+                write = csv.writer(output)
+                write.writerow(result)
+
+            output.close()
+
+        print("Done! Check output.csv file in folder")
+
+    csvfile.close()
+    
+    
+# Converts 2 columns (first column must have y_coord header, second column must have x_coord header) 
+# in a csv file into columns of Latitude and Longitude into a separate csv file in directory.
+
+# Usage: python SVY21.py file1.csv file2.csv (Whereas file1.csv is the name of our input file, and file2.csv is the name you want your output file to be)
+if __name__ == '__main__':
+    csvConverter()
+    
