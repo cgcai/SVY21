@@ -2,8 +2,8 @@ SVY21
 =====
 A **Free** and **Open Source** Library to convert between Lat/Lon, and SVY21.
 
-##Usage##
-###Ruby###
+## Usage
+### Ruby
 The Ruby version is packaged as a [gem](https://rubygems.org/gems/SVY21).
 
 To install
@@ -25,7 +25,7 @@ Usage
     puts "northing: #{northing_easting[0]}"
     puts "easting: #{northing_easting[1]}"
 
-###Python###
+### Python
 The Python script is a ready-to-use converter. Run with `python -i SVY21.py`.
 
     # Initialization
@@ -42,7 +42,7 @@ The Python script is a ready-to-use converter. Run with `python -i SVY21.py`.
     >>> (lat, lon)
     (1.2949192688483109, 103.77367436887495)
     
-###Java###
+### Java
 The package `net.qxcg.svy21` contains all necessary files.
 
 The static class `SVY21` performs actual conversions. The classes `SVY21Coordinate` and `LatLonCoordinate` are immutable types that store SVY21 and Latitude/Longitude respectively. Conversions using `SVY21` return new copies of either coordinate type.  
@@ -73,7 +73,7 @@ The static class `SVY21` performs actual conversions. The classes `SVY21Coordina
     double easting = result.getEasting();
     reverseResult = SVY21.computeLatLon(northing, easting);
 		
-###JavaScript###
+### JavaScript
 
     // Initialization
 	var cv = new SVY21();
@@ -88,7 +88,7 @@ The static class `SVY21` performs actual conversions. The classes `SVY21Coordina
 	var resultLatLon = cv.computeLatLon(result.N, result.E);
 	console.log(resultLatLon);
 
-###C\# ###
+### C\#
 The C\# implementation was ported from the Java implementation, and includes the same tests (executable in Visual Studio.)
 Unlike the Java implementation, however, `LatLongCoordinate` and `Svy21Coordinate` are mutable.
 
@@ -117,7 +117,7 @@ Alternatively, the three classes (`LatLongCoordinate`, `Svy21Coordinate`, and `S
     double easting = converted.Easting;
     reverse = Svy21.ComputeLatitudeLongitude(northing, easting);
 
-##C++##
+## C++
  	// Initialization
 	SVY21 svy21;
 
@@ -132,33 +132,33 @@ Alternatively, the three classes (`LatLongCoordinate`, `Svy21Coordinate`, and `S
 	svy21.SVY21ToLatLon(northing, easting, &lat, &lon);
 	printf("%lf %lf\n", lat, lon);
 
-##Testing##
+## Testing
 The "Protected Areas And Protected Places Act" found [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=Id%3A%223ed25f04-0465-4eda-b05f-c0c7334e8840%22%20Status%3Ainforce;rec=0;whole=yes) lists some SVY21 points that correspond to vertices of hard-to-miss plots of land in Singapore.
 
 You can try converting some of the Northing, Easting coordinates to Latitude and Longitude, and viewing the plot of land on [Google Maps](https://maps.google.com.sg/) to verify their accuracy.
 
-###Precision###
+### Precision
 Like all floating-point computations, converting back and forth between Lat/Lon and SVY21 will cause the loss of precision. 
 
 In the Python example above, note that the input Lat/Lon and output Lat/Lon are very slightly different. Repeating the process a few more times will compound this difference.
 
 The useful precision of the output also depends on the precision of the inputs.
 
-##Known Issues##
+## Known Issues
 1. Setting the origin's latitude and longitude, represented by `oLat` and `oLon` respectively, to the official SVY21 datum specified [here](http://statutes.agc.gov.sg/aol/search/display/view.w3p;page=0;query=DocId%3A%22f3625be0-89ba-4db2-85bf-303d62771de8%22%20Status%3Ainforce%20Depth%3A0;rec=0) results in computation being a bit off (when compared to a Google Maps satellite image) for the above sample points. However, the rounded values of `(1.366666, 103.833333)` give accurate results.
 
-##Mathematics##
+## Mathematics
 This library makes use of the equations in the following page:  
 [Transverse Mercator Transformation Formulae](http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx)
 
-##Other Languages##
+## Other Languages
 Feel free to port the code to other languages, and submit a pull request if you do!
 
-##Future Direction##
+## Future Direction
 1. **Code quality**. This library was developed during a Hackathon, and needs to be brought up to production standard.
 2. Automated and/or more comprehensive **tests**.
 
-##Acknowledgements##
+## Acknowledgements
 Isaac Low  
 Jonathan Ong  
 Chua Wei Kuan  
